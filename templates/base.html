@@ -17,10 +17,10 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
    <!-- <script> var socket = io.connect('http://timan102.cs.illinois.edu/explanation/');</script>  -->
- 
+
   {% set base_url = 'http://localhost:8096' %}
   {% set pdf_url = 'http://localhost:8888' %}
- 
+
 </head>
 <body>
 <div class="container" >
@@ -34,7 +34,7 @@
          <ul class="dropdown-menu" style="background-color: #E8E8E8; opacity: 0.97">
            {% for i in range(num_vis)|reverse %}
               <li><a href={{vis_urls[i]}}>{{vis_strs[i]}}</a></li>
-            
+
 
             {% endfor %}
         </ul>
@@ -43,17 +43,49 @@
          <ul class="dropdown-menu" style="background-color: #E8E8E8; opacity: 0.97;max-height:  100vh; overflow:scroll;">
            {% for j in range(num_courses) %}
             <li><a href="{{base_url}}/slide/{{course_names[j]}}/0">{{' '.join(course_names[j].split('-')).title()}}</a></li>
-          
-
             {% endfor %}
         </ul>
       </li>
-       
+
       {% block nav %}
       {% endblock %}
     </ul>
   </nav>
       {% block body %}
+
+      <div class="row">
+        <div class="hero-unit">
+          <h1>Welcome to the Educational Website.</h1>
+          <p>Get started by clicking a button below or above.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="recently-visited">
+            <div class="rv-title">
+              <h3>Recently Visited Slides</h3>
+            </div>
+            <ul>
+              {% for i in range(num_vis)|reverse %}
+                 <li><a href={{vis_urls[i]}}>{{vis_strs[i]}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="courses">
+            <div class="courses-title">
+              <h3>Courses</h3>
+            </div>
+            <ul>
+              <li><a href="{{base_url}}/slide/CS410/0">CS461</a></li>
+              <li><a href="{{base_url}}/slide/CS410/0">CS466</a></li>
+              <li><a href="{{base_url}}/slide/CS410/0">CS410</a></li>
+              <li><a href="{{base_url}}/slide/CS410/0">HORT106</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
       {% endblock %}
 
